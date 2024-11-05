@@ -1,0 +1,36 @@
+services:
+  #Servizos que se executarán no contenedor
+  bind9: #Como queremos chamar nos o servizo
+    image: internetsystemsconsortium/bind9:9.18 #Imaxe que utilizaremos no contenedor
+    container_name: Practica5_bind9 #Nome específico do contenedor
+    ports:
+      #Mapeo dos portos host:contenedor
+      - 54:53/udp
+      - 54:53/tcp
+      - 127.0.0.1:953:953/tcp #Neste só pertmite conexións desde localhost
+    volumes:
+      #Volumes onde se montará o contenedor
+      - ./etc/bind:/etc/bind
+      - ./var/cache/bind:/var/cache/bind
+    restart: always #Esta opción indica que ó contenedor debe reiniciarse en ciertas condiciones
+    networks:
+      P6_network:
+        ipv4_address: 172.18.0.10
+  cliente:
+    image: alpine
+    container_name: Practica6_alpine
+    tty: true
+    stdin_open: true
+    networks:
+      P6_network:
+        ipv4_address: 172.18.0.21
+    dns:
+      - 172.18.0.10
+networks:
+  P6_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+          ip_range: 172.18.0.0/24
+          gateway: 172.18.8.254
