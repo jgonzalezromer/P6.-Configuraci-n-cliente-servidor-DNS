@@ -14,7 +14,6 @@ Juan Gabriel González Romero
 
 ---
 ### Recursos
-
 [Repositorio de Damián](https://github.com/damiancastelao/practica01-DNS)
 ---
 ### docker-compose.yml
