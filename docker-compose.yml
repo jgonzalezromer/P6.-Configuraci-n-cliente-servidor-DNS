@@ -5,9 +5,9 @@ services:
     container_name: Practica5_bind9 #Nome específico do contenedor
     ports:
       #Mapeo dos portos host:contenedor
-      - 54:53/udp
-      - 54:53/tcp
-      - 127.0.0.1:953:953/tcp #Neste só pertmite conexións desde localhost
+      - 55:53/udp
+      - 55:53/tcp
+      - 127.0.0.1:955:955/tcp #Neste só pertmite conexións desde localhost
     volumes:
       #Volumes onde se montará o contenedor
       - ./etc/bind:/etc/bind
