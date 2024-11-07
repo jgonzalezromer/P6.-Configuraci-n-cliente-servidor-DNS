@@ -79,7 +79,7 @@ cliente:
     dns:
       - 172.18.0.2
 ```
-### **Completo**
+### Completo
 Este sería o arquivo `docker-compose.yml` completo:
 ```
 services:
