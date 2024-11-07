@@ -13,11 +13,11 @@ Juan Gabriel González Romero
 ### Proposta: Engadir un servizo, que se conectará ao DNS, ao docker compose do [proxecto anterior](https://github.com/jgonzalezromer/P5.-DNS---Docker-Compose).
 
 ---
-### Recursos
-Utilizaremos o [repositorio de Damián](https://github.com/damiancastelao/practica01-DNS)
+## Recursos
+Utilizaremos o [repositorio de Damián](https://github.com/damiancastelao/practica01-DNS).
 ---
-### docker-compose.yml
-O primeiro que faremos é modificar o docker-compose.yml que fixemos con anterioridade:
+## docker-compose.yml
+Modificaremos o `docker-compose.yml` que fixemos con anterioridade:
 ```
 services:
   #Servizos que se executarán no contenedor
@@ -35,6 +35,7 @@ services:
       - ./var/cache/bind:/var/cache/bind
     restart: always #Esta opción indica que ó contenedor debe reiniciarse en ciertas condiciones
 ```
+### networks
 O primeiro será añadir o apartado de networks para así logo especificalas a cada contenedor.
 Aquí vou por duas maneras de facelo:
 1. Nesta manera a rede `P6_network` desplegarase xunto a creación dos contenedores.
