@@ -104,23 +104,23 @@ services:
       P6_network:
         ipv4_address: 172.18.0.2
   cliente:
-    image: alpine
-    container_name: Practica6_alpine
+    image: alpine #Imaxe do cliente
+    container_name: Practica6_alpine #Nome do container
     tty: true
     stdin_open: true
     networks:
-      P6_network:
-        ipv4_address: 172.18.0.3
+      P6_network: #Nome da rede
+        ipv4_address: 172.18.0.3 #IP que lle otorgamos ao cliente
     dns:
-      - 172.18.0.2
+      - 172.18.0.2 #IP do servidor DNS
 networks:
-  P6_network:
-    driver: bridge
+  P6_network: #Nome da rede
+    driver: bridge #Tipo de rede
     ipam:
       config:
-        - subnet: 172.18.0.0/16
-          ip_range: 172.18.0.0/24
-          gateway: 172.18.8.254
+        - subnet: 172.18.0.0/16 #Rango de enderezos IP
+          ip_range: 172.18.0.0/24 #Subrango de enderezos
+          gateway: 172.18.8.254 #Dirección gateway
 ```
 
 ## named.conf
@@ -134,33 +134,37 @@ include "/etc/bind/named.conf.local";
 Este arquivo sirve para indicar as opcións do servidor DNS nel introduciremos o codigo:
 ```
 options {
-        directory "/var/cache/bind";
+        directory "/var/cache/bind"; #Directorio onde se almacenarán os datos de caché
 
         forwarders {
-                8.8.8.8;
-                1.1.1.1;
+                8.8.8.8; #DNS de Google
+                1.1.1.1; #DNS de Cloudflare
          };
-         forward only;
+         forward only; #Indicamos que as consultas que non podan resolverse de una forma local serán reenviadas aos servidores indicados arriba
 
-        listen-on { any; };
-        listen-on-v6 { any; };
+        listen-on { any; }; #O servidor escoitará todas as interface IPv4 dispoñibles no servidor
+        listen-on-v6 { any; }; #O servidor escoitará todas as interface IPv6 dispoñibles no servidor
 
         allow-query {
                 any;
-        };
+        }; #Calquera dispositivo pode realizar consultas DNS
 };
 ```
+> [!WARNING]
+> No comando `allow-query` non é recomendable por `any` nun entorno real
 ### named.conf.local
 Este arquivo define a zona que terá o servidor DNS:
 ```
 zone "asircastelao.int" {
-        type master;
-        file "/var/lib/bind/db.asircastelao.int";
+        type master; #Indicamos que o servidor será o principal na zona
+        file "/var/lib/bind/db.asircastelao.int"; #Ruta ao ficheiro que contén os rexistros DNS na zona
         allow-query {
                 any;
                 };
-        };
+        }; #Calquera dispositivo pode realizar consultas DNS
 ```
+> [!WARNING]
+> No comando `allow-query` non é recomendable por `any` nun entorno real
 
 ## Conectar cliente
 Entraremos al cliente con el comando `docker exec -it Practica6_alpine /bin/sh` y utilizaremos los comandos:
