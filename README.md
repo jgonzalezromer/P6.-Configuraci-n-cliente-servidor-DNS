@@ -169,7 +169,10 @@ zone "asircastelao.int" {
 ## Conectar cliente
 Entraremos al cliente con el comando `docker exec -it Practica6_alpine /bin/sh` y utilizaremos los comandos:
 ```
-apk update
-apk add bind-tools
+apk update #Comando para actualizar os paquetes
+apk add bind-tools #Comando para descargar o paquete bind-tools o cal inclue dig e nslookup.
 ```
+> [!IMPORTANT]
+> Estos comandos os utilizamos xa que estamos nunha terminal `sh`, cambiarián se utilizaramos outra como pode ser bash
+
 Ahora ya podremos utilizar el comando `dig` con el que comprobaremos el servidor.
