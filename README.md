@@ -61,7 +61,7 @@ Na sección de bind9 deixaremos casi todo igual. Añadiremos un apartado de `net
 ```
 networks:
   P6_network: #Nome da rede
-    ipv4_address: 172.18.0.2 #IP que lle otorgamos al DNS
+    ipv4_address: 172.18.0.2 #IP que lle otorgamos ao DNS
 ```
 > [!NOTE]
 > Esto nos servirá para indicar cal será a sua IP, que logo utilizaremos como DNS.
@@ -70,16 +70,18 @@ networks:
 O cliente que utilizaremos terá a imaxe `alpine` e o código do seu contenedor será:
 ```
 cliente:
-    image: alpine
-    container_name: Practica6_alpine
+    image: alpine #Imaxe do cliente
+    container_name: Practica6_alpine #Nome do container
     tty: true
     stdin_open: true
     networks:
-      P6_network:
-        ipv4_address: 172.18.0.3
+      P6_network: #Nome da rede
+        ipv4_address: 172.18.0.3 #IP que lle otorgamos ao cliente
     dns:
-      - 172.18.0.2
+      - 172.18.0.2 #IP do servidor DNS
 ```
+> [!NOTE]
+> Os comandos `stdin_open: true` e `tty: true` os utilizamos para que o container se quede activo.
 ### Completo
 Este sería o arquivo `docker-compose.yml` completo:
 ```
