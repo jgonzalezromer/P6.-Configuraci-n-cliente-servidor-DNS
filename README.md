@@ -41,29 +41,30 @@ Aquí vou por duas maneras de facelo:
 1. Nesta manera a rede `P6_network` desplegarase xunto a creación dos contenedores.
 ```
 networks:
-  P6_network:
-    driver: bridge
+  P6_network: #Nome da rede
+    driver: bridge #Tipo de rede
     ipam:
       config:
-        - subnet: 172.18.0.0/16
-          ip_range: 172.18.0.0/24
-          gateway: 172.18.8.254
+        - subnet: 172.18.0.0/16 #Rango de enderezos IP
+          ip_range: 172.18.0.0/24 #Subrango de enderezos
+          gateway: 172.18.8.254 #Dirección gateway
 
 ```
 2. Nesta manera a rede xa debe estar creada na maquina onde se vaia a executar o docker-compose
 ```
-networks:
-  P6_network:
-    external: true
+networks: 
+  P6_network: #Nome da rede
+    external: true #A rede buscarala
 ```
 ### bind9
 Na sección de bind9 deixaremos casi todo igual. Añadiremos un apartado de `networks`:
 ```
 networks:
-      P6_network:
-        ipv4_address: 172.18.0.2
+  P6_network: #Nome da rede
+    ipv4_address: 172.18.0.2 #IP que lle otorgamos al DNS
 ```
-Esto nos servirá para indicar cal será a sua IP, que logo utilizaremos como DNS.
+> .[!NOTE]
+> Esto nos servirá para indicar cal será a sua IP, que logo utilizaremos como DNS.
 
 ### cliente
 O cliente que utilizaremos terá a imaxe `alpine` e o código do seu contenedor será:
