@@ -63,7 +63,7 @@ networks:
   P6_network: #Nome da rede
     ipv4_address: 172.18.0.2 #IP que lle otorgamos al DNS
 ```
-> .[!NOTE]
+> [!NOTE]
 > Esto nos servirá para indicar cal será a sua IP, que logo utilizaremos como DNS.
 
 ### cliente
