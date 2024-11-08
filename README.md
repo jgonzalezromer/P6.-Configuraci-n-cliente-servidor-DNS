@@ -166,13 +166,37 @@ zone "asircastelao.int" {
 > [!WARNING]
 > No comando `allow-query` non é recomendable por `any` nun entorno real
 
-## Conectar cliente
-Entraremos al cliente con el comando `docker exec -it Practica6_alpine /bin/sh` y utilizaremos los comandos:
+## Conectarse o cliente
+Entraremos no cliente co comando `docker exec -it Practica6_alpine /bin/sh` e utilizaremos os comandos:
 ```
 apk update #Comando para actualizar os paquetes
 apk add bind-tools #Comando para descargar o paquete bind-tools o cal inclue dig e nslookup.
 ```
 > [!IMPORTANT]
-> Estos comandos os utilizamos xa que estamos nunha terminal `sh`, cambiarián se utilizaramos outra como pode ser bash
+> Estos comandos os utilizamos xa que estamos nunha terminal `sh`, cambiarián se utilizaramos noutra como pode ser `bash`
 
-Ahora ya podremos utilizar el comando `dig` con el que comprobaremos el servidor.
+## Comprobar o servidor
+Comprobaremos que o servidor funciona facendo o comando:
+```
+dig @172.18.0.2 asircastelao.int
+```
+Esto serviranos para que `dig` faga a consulta ao dominio `asircastelao.int` usando o servidor que lle indicamos, `172.18.0.2`. Unha resposta típica sería: 
+```
+; <<>> DiG 9.18.27 <<>> @172.18.0.10 asircastelao.int
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 10236
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: db2188d2c9e8bdf401000000672e693f293ee1fab23d7c48 (good)
+;; QUESTION SECTION:
+;asircastelao.int.		IN	A
+
+;; Query time: 0 msec
+;; SERVER: 172.18.0.10#53(172.18.0.10) (UDP)
+;; WHEN: Fri Nov 08 19:40:47 UTC 2024
+;; MSG SIZE  rcvd: 73
+```
