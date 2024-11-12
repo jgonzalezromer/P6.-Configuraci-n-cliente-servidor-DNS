@@ -228,14 +228,14 @@ test.asircastelao.int.	38400	IN	A	172.28.5.4
 ```
 Comprobamos que o status é `NOERROR`. Tamén podemos utilizar outras ferramentas de rede coma :
 
-ping- Envía paquetes ICMP ECHO_REQUEST a unha dirección para verificar conectividad.
+**ping**- Envía paquetes ICMP ECHO_REQUEST a unha dirección para verificar conectividad.
 
-tracepath-	Similar a traceroute pero non require permisos de root. Mostra a ruta e cada salto hacia el destino.
+**tracepath**-	Similar a traceroute pero non require permisos de root. Mostra a ruta e cada salto hacia el destino.
 
-traceroute-	Traza a ruta da red a un destino específico. 
+**traceroute**-	Traza a ruta da red a un destino específico. 
 
-mtr-	Combina ping e tracepath mostrando o tempo de ping a cada salto na ruta ao destino.
+**mtr**-	Combina ping e tracepath mostrando o tempo de ping a cada salto na ruta ao destino.
 
-ifconfig-	Configura e visualiza información de interfaces de red, como direcciones IP.
+**ifconfig**-	Configura e visualiza información de interfaces de red, como direcciones IP.
 
-ifdown / ifup-	Activa o desactiva interfaces de red específicas.
+**ifdown / ifup**-	Activa o desactiva interfaces de red específicas.
