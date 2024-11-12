@@ -202,7 +202,7 @@ Comprobaremos que o servidor funciona facendo o comando:
 ```
 dig @172.18.0.2 test.asircastelao.int
 ```
-Esto serviranos para que `dig` faga a consulta ao dominio `asircastelao.int` usando o servidor que lle indicamos, `172.18.0.2`. Unha resposta típica sería: 
+Esto serviranos para que `dig` faga a consulta ao dominio `test.asircastelao.int` usando o servidor que lle indicamos, `172.18.0.2`. Unha resposta típica sería: 
 ```
 ; <<>> DiG 9.18.27 <<>> @172.18.0.2 test.asircastelao.int
 ; (1 server found)
@@ -225,4 +225,11 @@ test.asircastelao.int.	38400	IN	A	172.28.5.4
 ;; WHEN: Tue Nov 12 19:17:23 UTC 2024
 ;; MSG SIZE  rcvd: 94
 ```
-Comprobamos que o status é `NOERROR`.
+Comprobamos que o status é `NOERROR`. Tamén podemos utilizar outras ferramentas de rede coma :
+COMANDO	DESCRIPCIÓN	EJEMPLO
+ping- Envía paquetes ICMP ECHO_REQUEST a unha dirección para verificar conectividad.
+tracepath-	Similar a traceroute pero non require permisos de root. Mostra a ruta e cada salto hacia el destino.
+traceroute-	Traza a ruta da red a un destino específico. 
+mtr-	Combina ping e tracepath mostrando o tempo de ping a cada salto na ruta ao destino.
+ifconfig-	Configura e visualiza información de interfaces de red, como direcciones IP.
+ifdown / ifup-	Activa o desactiva interfaces de red específicas.
