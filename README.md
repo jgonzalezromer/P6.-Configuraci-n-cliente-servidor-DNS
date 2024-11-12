@@ -172,7 +172,7 @@ Entraremos no cliente co comando `docker exec -it Practica6_alpine /bin/sh` e ut
 apk update #Comando para actualizar os paquetes
 apk add bind-tools #Comando para descargar o paquete bind-tools o cal inclue dig e nslookup.
 ```
-> [!IMPORTANT]
+> [!IMPORTANTE]
 > Estos comandos os utilizamos xa que estamos nunha terminal `sh`, cambiarián se utilizaramos noutra como pode ser `bash`
 
 ## Comprobar o servidor
