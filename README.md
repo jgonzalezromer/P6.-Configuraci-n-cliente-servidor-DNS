@@ -33,6 +33,7 @@ services:
       #Volumes onde se montará o contenedor
       - ./etc/bind:/etc/bind
       - ./var/cache/bind:/var/cache/bind
+      - ./var/lib/bind:/var/lib/bind
     restart: always #Esta opción indica que ó contenedor debe reiniciarse en ciertas condiciones
 ```
 ### networks
