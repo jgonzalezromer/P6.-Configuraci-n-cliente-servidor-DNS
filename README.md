@@ -99,6 +99,7 @@ services:
       #Volumes onde se montará o contenedor
       - ./etc/bind:/etc/bind
       - ./var/cache/bind:/var/cache/bind
+      - ./var/lib/bind:/var/lib/bind
     restart: always #Esta opción indica que ó contenedor debe reiniciarse en ciertas condiciones
     networks:
       P6_network:
@@ -166,6 +167,27 @@ zone "asircastelao.int" {
 > [!WARNING]
 > No comando `allow-query` non é recomendable por `any` nun entorno real
 
+### db.asircastelao.int
+Este arquivo almacenará a información de mapeo dos nomes das direccions IPs:
+```
+$TTL 38400      ; 10 hours 40 minutes
+@               IN SOA  ns.asircastelao.int. some.email.address. (
+                                10000002   ; serial
+                                10800      ; refresh (3 hours)
+                                3600       ; retry (1 hour)
+                                604800     ; expire (1 week)
+                                38400      ; minimum (10 hours 40 mi>
+                                )
+@               IN NS   ns.asircastelao.int.
+ns              IN A            172.28.5.1
+test    IN A            172.28.5.4
+www             IN A            172.28.5.7
+alias   IN CNAME        test
+texto   IN TXT          mensaje
+```
+> [!IMPORTANT]
+> Este arquivo o debemos guardar na carpeta ./var/lib/bind/db.asircastelao.int
+
 ## Conectarse o cliente
 Entraremos no cliente co comando `docker exec -it Practica6_alpine /bin/sh` e utilizaremos os comandos:
 ```
@@ -178,25 +200,29 @@ apk add bind-tools #Comando para descargar o paquete bind-tools o cal inclue dig
 ## Comprobar o servidor
 Comprobaremos que o servidor funciona facendo o comando:
 ```
-dig @172.18.0.2 asircastelao.int
+dig @172.18.0.2 test.asircastelao.int
 ```
 Esto serviranos para que `dig` faga a consulta ao dominio `asircastelao.int` usando o servidor que lle indicamos, `172.18.0.2`. Unha resposta típica sería: 
 ```
-; <<>> DiG 9.18.27 <<>> @172.18.0.10 asircastelao.int
+; <<>> DiG 9.18.27 <<>> @172.18.0.2 test.asircastelao.int
 ; (1 server found)
 ;; global options: +cmd
 ;; Got answer:
-;; ->>HEADER<<- opcode: QUERY, status: SERVFAIL, id: 10236
-;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 0, ADDITIONAL: 1
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 50674
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
 
 ;; OPT PSEUDOSECTION:
 ; EDNS: version: 0, flags:; udp: 1232
-; COOKIE: db2188d2c9e8bdf401000000672e693f293ee1fab23d7c48 (good)
+; COOKIE: c0c18392bad0afaa010000006733a9c3199676fefedd04cd (good)
 ;; QUESTION SECTION:
-;asircastelao.int.		IN	A
+;test.asircastelao.int.		IN	A
 
-;; Query time: 0 msec
-;; SERVER: 172.18.0.10#53(172.18.0.10) (UDP)
-;; WHEN: Fri Nov 08 19:40:47 UTC 2024
-;; MSG SIZE  rcvd: 73
+;; ANSWER SECTION:
+test.asircastelao.int.	38400	IN	A	172.28.5.4
+
+;; Query time: 1 msec
+;; SERVER: 172.18.0.2#53(172.18.0.2) (UDP)
+;; WHEN: Tue Nov 12 19:17:23 UTC 2024
+;; MSG SIZE  rcvd: 94
 ```
+Comprobamos que o status é `NOERROR`.
