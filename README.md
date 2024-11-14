@@ -137,7 +137,7 @@ Este arquivo sirve para indicar as opcións do servidor DNS nel introduciremos o
 ```
 options {
         directory "/var/cache/bind"; #Directorio onde se almacenarán os datos de caché
-
+        dnssec-validation no;
         forwarders {
                 8.8.8.8; #DNS de Google
                 1.1.1.1; #DNS de Cloudflare
