@@ -190,6 +190,7 @@ texto   IN TXT          mensaje
 > Este arquivo o debemos guardar na carpeta ./var/lib/bind/db.asircastelao.int
 
 ## Conectarse o cliente
+Primeiro faremos `docker-compose up -d` para iniciar os contenedores.
 Entraremos no cliente co comando `docker exec -it Practica6_alpine /bin/sh` e utilizaremos os comandos:
 ```
 apk update #Comando para actualizar os paquetes
